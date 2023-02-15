@@ -4,6 +4,7 @@ import { server } from "./../index";
 import { Container, HStack } from "@chakra-ui/react";
 import Loader from "./Loader";
 import ExchangeCard from "./ExchangeCard";
+import ErrorComponent from './ErrorComponent';
 
 const Exchanges = () => {
   const [exchanges, setExchanges] = useState([]);
@@ -15,7 +16,7 @@ const Exchanges = () => {
       try {
         const { data } = await axios.get(`${server}/exchanges`);
       setExchanges(data);
-      console.log(data);
+      // console.log(data);
       setLoading(false);
       } catch (error) {
         setError(true);
@@ -24,6 +25,8 @@ const Exchanges = () => {
     };
     fetchExchanges();
   }, []);
+
+  if(error) return <ErrorComponent message={'error while fetching exchanges'}/>
 
   return (
     <Container maxW={"container.xl"}>

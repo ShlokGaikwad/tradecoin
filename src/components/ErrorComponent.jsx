@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ErrorComponent = () => {
+const ErrorComponent = ({message}) => {
   return (
-    <div>ErrorComponent</div>
+    <div>{message}</div>
   )
 }
 
